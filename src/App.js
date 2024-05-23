@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import {SketchPicker} from 'react-color'
+
 
 function App() {
+
+  const [currentColor, setCurrentColor] =useState("#ff6")
+  const hanleOnChange =(color)=>{
+    setCurrentColor(color.hex)
+   // console.log(color.hex)
+  }
+
+  const appStyle ={
+    backgroundColor: currentColor,
+   height:"100vh",
+  textAlign: "center",
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+<div className="App" style={appStyle}>
+   <h1>Color Picker</h1>
+   <h3>Color Code:{currentColor}</h3>
+   
+   <SketchPicker
+    color={currentColor}
+    onChangeComplete={hanleOnChange}
+   />
+   
+   </div>
   );
 }
 
